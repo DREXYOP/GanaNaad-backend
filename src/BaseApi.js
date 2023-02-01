@@ -28,7 +28,7 @@ app.post("/v1/news/post" ,  async (req,res)=>{
     description: req.body.description,
     author: req.body.author,
     location: req.body.location,
-    timestamp: Date.now(),
+    timestamp: new Date().toLocaleString(),
     imageUrl: req.body.imageUrl
   })
   news.save().then(r => {
