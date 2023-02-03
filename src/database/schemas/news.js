@@ -6,8 +6,9 @@ const newsSchema =  new mongoose.Schema({
     description: String,
     author: String,
     location: String,
-    timestamp: Number,
-    imageUrl:String
-  })
+    timeofUpload: Number,
+    imageUrl:String,
+    
+  },{timestamps:true})
 
 module.exports = mongoose.model('News',newsSchema);
