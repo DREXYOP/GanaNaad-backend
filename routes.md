@@ -1,31 +1,6 @@
 
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>SchoolSeat API</title>
-    <style>
-        body {
-            background-color: #282a36;
-            color: #f8f8f2;
-            font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
-        }
-        a {
-            color: #8be9fd;
-            text-decoration: none;
-        }
 
-        a:hover {
-            border-bottom: #6272a4 solid 1px;
-        }
-        .delete {
-            color: #ff5555;
-        }
-        .post {
-            color: #50fa7b;
-        }
-    </style>
-</head>
 
 
 <h1>Useful routes</h1>
