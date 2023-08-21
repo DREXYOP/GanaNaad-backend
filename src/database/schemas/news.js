@@ -6,7 +6,7 @@ const newsSchema =  new mongoose.Schema({
     description: String,
     author: String,
     location: String,
-    timeofUpload: Number,
+    // timeofUpload: Number,
     imageUrl:String,
     
   },{timestamps:true})
