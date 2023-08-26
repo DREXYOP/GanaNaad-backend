@@ -1,13 +1,13 @@
-const News = require("./src/database/schemas/news")
+require("./src/database/connect.js")
 const mongoose = require("mongoose");
-require("./src/database/connect.cjs")
+const News = require("./src/database/schemas/news");
 const news = new News({
     _id: new mongoose.Types.ObjectId,
-    title: "req.body.title",
-    description: "req.body.description",
-    author: "req.body.author",
-    location: "req.body.location",
-    // timeofUpload: new Date().toLocaleString(),
-    imageUrl: "mhgfds"
+    title: "test4",
+    description: "test4 xyz",
+    author: "test4",
+    location: "India",
+    _upload_date: Date.now(),
+    imageUrl: "https://assets.babycenter.com/ims/2020/11/img_noimageavailable.svg"
   })
-news.save();
+news.save()

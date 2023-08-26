@@ -1,12 +1,15 @@
 const app = require("express")();
-const port = 4090;
-require("./database/connect.cjs")
+const port = 40990;
+const auth = require("./authMiddleWare.js")
+require("./database/connect.js")
 const mongoose = require("mongoose");
 const News = require("./database/schemas/news");
 app.listen(port,
   () => console.log(`api listening at http://localhost:${port}/`),
 
 )
+
+app.use(auth);
 
 app.get("/", async (req, res) => {
 
@@ -34,8 +37,8 @@ app.post("/v1/news/post", async (req, res) => {
     description: req.body.description,
     author: req.body.author,
     location: req.body.location,
-    timeofUpload: new Date().toLocaleString(),
-    imageUrl: req.body.imageUrl?req.body.imageUrl:""
+    // timeofUpload: new Date().toLocaleString(),
+    imageUrl: req.body.imageUrl ? req.body.imageUrl : "https://assets.babycenter.com/ims/2020/11/img_noimageavailable.svg"
   })
   await news.save()
     .then(r => {
@@ -64,6 +67,47 @@ app.post("/v1/news/delete", async (req, res) => {
 
 })
 
+app.get("/v1/news/get/latest", async (req, res) => {
+  await News.findOne({})
+    .sort({ updatedAt: -1 })
+    .exec((err, latestUpload) => {
+      if (err) {
+        console.log(err)
+      } else {
+        res.status(200).json({ latestUpload });
+      }
+    })
+
+  console.log("Recived a GET request")
+})
+
+app.get("/v1/news/get/today", async (req, res) => {
+  await News.findOne({})
+    .sort({ updatedAt: -1 })
+    .exec((err, latestUpload) => {
+      if (err) {
+        console.log(err)
+      } else {
+        res.status(200).json({ latestUpload });
+      }
+    })
+
+  console.log("Recived a GET request")
+})
+
+app.get("/v1/news/get/thisWeek", async (req, res) => {
+  await News.findOne({})
+    .sort({ updatedAt: -1 })
+    .exec((err, latestUpload) => {
+      if (err) {
+        console.log(err)
+      } else {
+        res.status(200).json({ latestUpload });
+      }
+    })
+
+  console.log("Recived a GET request")
+})
 
 app.get('/v1/news/get/:id', async (req, res) => {
   await News.findOne({ _id: req.params.id })
@@ -72,9 +116,8 @@ app.get('/v1/news/get/:id', async (req, res) => {
     })
     .catch(err => {
       console.log("something went wrong")
-      res.status(500).json({"err":err})
+      res.status(500).json({ "err": err })
     })
 
 })
-
 

@@ -2,12 +2,12 @@ const mongoose = require('mongoose')
 
 const newsSchema =  new mongoose.Schema({ 
     _id: mongoose.Schema.Types.ObjectId,
-    title: String,
-    description: String,
-    author: String,
-    location: String,
-    // timeofUpload: Number,
-    imageUrl:String,
+    title: { type: String, required: true },
+    description: { type: String, required: true },
+    author: { type: String, required: true },
+    location: { type: String, required: true },
+    _upload_date: Date,
+    imageUrl: { type: String, required: true },
     
   },{timestamps:true})
 
