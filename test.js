@@ -7,7 +7,6 @@ const news = new News({
     description: "test4 xyz",
     author: "test4",
     location: "India",
-    _upload_date: Date.now(),
     imageUrl: "https://assets.babycenter.com/ims/2020/11/img_noimageavailable.svg"
-  })
-news.save()
+  });
+news.save();
