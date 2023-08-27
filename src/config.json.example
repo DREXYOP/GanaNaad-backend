@@ -1,0 +1,6 @@
+{
+    "$schema": "http://json.schemastore.org/babelrc",
+    "db_mode" : "test",
+    "mongouri":"",
+    "api_key":""
+}
