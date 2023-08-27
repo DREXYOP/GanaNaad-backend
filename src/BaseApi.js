@@ -62,7 +62,7 @@ app.delete("/v1/news/delete/:id", async (req, res) => {
       res.status(200).send(`success fully deleted ${req.params.id}`);
     })
     .catch(err => {
-      res.status(500).send(`data doesnot exist , ${err}`);
+      res.status(500).send(`${err}`);
     });
 
 });
@@ -79,6 +79,8 @@ app.get("/v1/news/get/latest", async (req, res) => {
     });
 
   console.log("Recived a GET request");
+
+
 });
 
 app.get("/v1/news/get/today", async (req, res) => {
@@ -95,9 +97,9 @@ app.get("/v1/news/get/today", async (req, res) => {
         $lt: nextDay
       }
     });
-  
-   res.status(200).json(dayDocuments);
-   
+
+    res.status(200).json(dayDocuments);
+
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json(error);
@@ -111,25 +113,25 @@ app.get("/v1/news/get/thisWeek", async (req, res) => {
   const startOfWeek = new Date(currentDate);
   startOfWeek.setHours(0, 0, 0, 0);
   startOfWeek.setDate(currentDate.getDate() - currentDate.getDay()); // Set to the first day of the week (Sunday)
-  
+
   const endOfWeek = new Date(currentDate);
   endOfWeek.setHours(23, 59, 59, 999);
   endOfWeek.setDate(startOfWeek.getDate() + 6); // Set to the last day of the week (Saturday)
-  
+
   News.find({
     createdAt: {
       $gte: startOfWeek,
       $lte: endOfWeek
     }
   })
-  .exec((err, weekUploads) => {
-    if (err) {
-      console.error("Error:", err);
-      res.status(500).json({"err":err});
-    } else {
-      res.status(200).json(weekUploads);
-    }
-  });
+    .exec((err, weekUploads) => {
+      if (err) {
+        console.error("Error:", err);
+        res.status(500).json({ "err": err });
+      } else {
+        res.status(200).json(weekUploads);
+      }
+    });
   console.log("Recived a GET request");
 });
 
