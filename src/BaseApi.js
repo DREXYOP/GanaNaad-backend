@@ -40,6 +40,7 @@ app.post("/v1/news/post", async (req, res) => {
     description: req.body.description ? req.body.description : "undifined",
     author: req.body.author ? req.body.author : "undifined",
     location: req.body.location ? req.body.location : "undifined",
+    uploadDate: new Date,
     imageUrl: req.body.imageUrl ? req.body.imageUrl : "https://assets.babycenter.com/ims/2020/11/img_noimageavailable.svg"
   });
   await news.save()
@@ -52,17 +53,16 @@ app.post("/v1/news/post", async (req, res) => {
     });
 });
 
-app.post("/v1/news/delete", async (req, res) => {
+app.delete("/v1/news/delete/:id", async (req, res) => {
   console.log("Recived a Delete request");
-  await News.deleteOne({ _id: req.body.newsId })
-//eslint-disable-next-line
+  await News.deleteOne({ _id: req.params.id })
     .then(r => {
-      res.sendStatus(200);
-      console.log(`Successfully deleted ${req.body.newsId}`);
+      console.log(`Successfully deleted ${req.params.id}`);
+      console.log(r);
+      res.status(200).send(`success fully deleted ${req.params.id}`);
     })
     .catch(err => {
-      console.log(err);
-      res.status(500).json({ error: err });
+      res.status(500).send(`data doesnot exist , ${err}`);
     });
 
 });
@@ -82,30 +82,54 @@ app.get("/v1/news/get/latest", async (req, res) => {
 });
 
 app.get("/v1/news/get/today", async (req, res) => {
-  await News.findOne({})
-    .sort({ updatedAt: -1 })
-    .exec((err, latestUpload) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.status(200).json({ latestUpload });
+  const targetDate = new Date(); // Use the current date as the target date
+  targetDate.setHours(0, 0, 0, 0); // Set time to the start of the day
+
+  const nextDay = new Date(targetDate);
+  nextDay.setDate(targetDate.getDate() + 1);
+
+  try {
+    const dayDocuments = await News.find({
+      createdAt: {
+        $gte: targetDate,
+        $lt: nextDay
       }
     });
+  
+   res.status(200).json(dayDocuments);
+   
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json(error);
+  }
 
   console.log("Recived a GET request");
 });
 
 app.get("/v1/news/get/thisWeek", async (req, res) => {
-  await News.findOne({})
-    .sort({ updatedAt: -1 })
-    .exec((err, latestUpload) => {
-      if (err) {
-        console.log(err);
-      } else {
-        res.status(200).json({ latestUpload });
-      }
-    });
-
+  const currentDate = new Date();
+  const startOfWeek = new Date(currentDate);
+  startOfWeek.setHours(0, 0, 0, 0);
+  startOfWeek.setDate(currentDate.getDate() - currentDate.getDay()); // Set to the first day of the week (Sunday)
+  
+  const endOfWeek = new Date(currentDate);
+  endOfWeek.setHours(23, 59, 59, 999);
+  endOfWeek.setDate(startOfWeek.getDate() + 6); // Set to the last day of the week (Saturday)
+  
+  News.find({
+    createdAt: {
+      $gte: startOfWeek,
+      $lte: endOfWeek
+    }
+  })
+  .exec((err, weekUploads) => {
+    if (err) {
+      console.error("Error:", err);
+      res.status(500).json({"err":err});
+    } else {
+      res.status(200).json(weekUploads);
+    }
+  });
   console.log("Recived a GET request");
 });
 

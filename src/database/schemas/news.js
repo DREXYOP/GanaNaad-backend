@@ -12,6 +12,8 @@ const newsSchema =  new mongoose.Schema({
     location: { type: String, required: true },
 
     imageUrl: { type: String, required: true },
+
+    uploadDate: { type: Date , required: true}
     
   },{timestamps:true});
 

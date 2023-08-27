@@ -1,12 +1,27 @@
+/* eslint-disable */ //disable eslint for this file
+
 require("./src/database/connect.js");
 const mongoose = require("mongoose");
 const News = require("./src/database/schemas/news");
-const news = new News({
-    _id: new mongoose.Types.ObjectId,
-    title: "test4",
-    description: "test4 xyz",
-    author: "test4",
-    location: "India",
-    imageUrl: "https://assets.babycenter.com/ims/2020/11/img_noimageavailable.svg"
-  });
-news.save();
+const currentDate = new Date();
+const startOfWeek = new Date(currentDate);
+startOfWeek.setHours(0, 0, 0, 0);
+startOfWeek.setDate(currentDate.getDate() - currentDate.getDay()); // Set to the first day of the week (Sunday)
+
+const endOfWeek = new Date(currentDate);
+endOfWeek.setHours(23, 59, 59, 999);
+endOfWeek.setDate(startOfWeek.getDate() + 6); // Set to the last day of the week (Saturday)
+
+News.find({
+  createdAt: {
+    $gte: startOfWeek,
+    $lte: endOfWeek
+  }
+})
+.exec((err, weekUploads) => {
+  if (err) {
+    console.error('Error:', err);
+  } else {
+    console.log('This Week\'s Uploads:', weekUploads);
+  }
+});
