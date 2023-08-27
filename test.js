@@ -1,4 +1,4 @@
-require("./src/database/connect.js")
+require("./src/database/connect.js");
 const mongoose = require("mongoose");
 const News = require("./src/database/schemas/news");
 const news = new News({

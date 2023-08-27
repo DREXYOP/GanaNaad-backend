@@ -1,17 +1,17 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const config = require("../config.json");
 
-connect()
+connect();
 async function connect() {
     mongoose.connect(config.mongouri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     });
-    mongoose.set('strictQuery', true);
+    mongoose.set("strictQuery", true);
     mongoose.connection.once("open", () => {
-        console.log('[DATABASE] Successfuly Connected To DataBase');
+        console.log("[DATABASE] Successfuly Connected To DataBase");
        
-    })
+    });
     return;
 }
 

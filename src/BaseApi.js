@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const port = 4090;
 const auth = require("./authMiddleWare.js");
@@ -16,24 +16,24 @@ app.use(auth);
 app.use(express.json());
 
 app.get("/", async (req, res) => {
-  res.status(200).json({ status: "Working" })
+  res.status(200).json({ status: "Working" });
 });
 
 app.get("/v1", async (req, res) => {
-  res.status(200).json({ status: "Working", version: "v1" })
+  res.status(200).json({ status: "Working", version: "v1" });
 });
 
 
 app.get("/v1/news/get", async (req, res) => {
-  const data = await News.find({})
+  const data = await News.find({});
   res.status(200).json({ data });
-  console.log("Recived a GET request")
+  console.log("Recived a GET request");
 });
 
 
 
 app.post("/v1/news/post", async (req, res) => {
-  console.log("Recived a POST request")
+  console.log("Recived a POST request");
   const news = new News({
     _id: new mongoose.Types.ObjectId,
     title: req.body.title ? req.body.title : "undifined",
@@ -44,24 +44,25 @@ app.post("/v1/news/post", async (req, res) => {
   });
   await news.save()
     .then(r => {
-      res.status(200).json({ result: r })
+      res.status(200).json({ result: r });
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({ error: err })
+      res.status(500).json({ error: err });
     });
 });
 
 app.post("/v1/news/delete", async (req, res) => {
   console.log("Recived a Delete request");
   await News.deleteOne({ _id: req.body.newsId })
+//eslint-disable-next-line
     .then(r => {
-      res.sendStatus(200)
-      console.log(`Successfully deleted ${req.body.newsId}`)
+      res.sendStatus(200);
+      console.log(`Successfully deleted ${req.body.newsId}`);
     })
     .catch(err => {
       console.log(err);
-      res.status(500).json({ error: err })
+      res.status(500).json({ error: err });
     });
 
 });
@@ -71,50 +72,50 @@ app.get("/v1/news/get/latest", async (req, res) => {
     .sort({ updatedAt: -1 })
     .exec((err, latestUpload) => {
       if (err) {
-        console.log(err)
+        console.log(err);
       } else {
         res.status(200).send(latestUpload);
       }
-    })
+    });
 
-  console.log("Recived a GET request")
-})
+  console.log("Recived a GET request");
+});
 
 app.get("/v1/news/get/today", async (req, res) => {
   await News.findOne({})
     .sort({ updatedAt: -1 })
     .exec((err, latestUpload) => {
       if (err) {
-        console.log(err)
+        console.log(err);
       } else {
         res.status(200).json({ latestUpload });
       }
-    })
+    });
 
-  console.log("Recived a GET request")
-})
+  console.log("Recived a GET request");
+});
 
 app.get("/v1/news/get/thisWeek", async (req, res) => {
   await News.findOne({})
     .sort({ updatedAt: -1 })
     .exec((err, latestUpload) => {
       if (err) {
-        console.log(err)
+        console.log(err);
       } else {
         res.status(200).json({ latestUpload });
       }
-    })
+    });
 
-  console.log("Recived a GET request")
+  console.log("Recived a GET request");
 });
 
-app.get('/v1/news/get/:id', async (req, res) => {
+app.get("/v1/news/get/:id", async (req, res) => {
   await News.findOne({ _id: req.params.id })
     .then(r => {
-      res.status(200).send(r)
+      res.status(200).send(r);
     })
     .catch(err => {
-      console.log("something went wrong")
-      res.status(500).json({ "err": err })
-    })
+      console.log("something went wrong");
+      res.status(500).json({ "err": err });
+    });
 });

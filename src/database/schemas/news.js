@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const newsSchema =  new mongoose.Schema({ 
     _id: { type: mongoose.Schema.Types.ObjectId, required: true },
@@ -13,6 +13,6 @@ const newsSchema =  new mongoose.Schema({
 
     imageUrl: { type: String, required: true },
     
-  },{timestamps:true})
+  },{timestamps:true});
 
-module.exports = mongoose.model('News',newsSchema);
+module.exports = mongoose.model("News",newsSchema);
