@@ -1,8 +1,8 @@
 const express = require("express");
 const app = express();
 const port = 4090;
-const auth = require("./authMiddleWare.js");
-const ratelimit = require("./ratelimitMiddleWare.js");
+const auth = require("./middleware/authMiddleWare.js");
+const ratelimit = require("./middleware/ratelimitMiddleWare.js");
 const mongoose = require("mongoose");
 const News = require("./database/schemas/news");
 
@@ -13,10 +13,10 @@ app.listen(port,
 
 );
 
-app.use(express.json());
-app.use(auth);
 app.set("trust proxy", 1);
 app.use(ratelimit);
+app.use(express.json());
+app.use(auth);
 
 app.get("/", async (req, res) => {
   res.status(200).json({ status: "Working" });
