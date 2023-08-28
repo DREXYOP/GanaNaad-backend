@@ -92,12 +92,12 @@ Don't forget to give the project a star! Thanks again!
 [stars-shield]: https://img.shields.io/github/stars/DREXYOP/GanaNaad-backend.svg?style=for-the-badge
 [stars-url]: https://github.com/DREXYOP/GanaNaad-backend/stargazers
 [issues-shield]: https://img.shields.io/github/issues/DREXYOP/GanaNaad-backend.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[issues-url]: https://github.com/DREXYOP/GanaNaad-backend/issues
 [license-shield]: https://img.shields.io/github/license/DREXYOP/GanaNaad-backend.svg?style=for-the-badge
-[license-url]: https://github.com/DREXYOP/GanaNaad-backend/blob/master/LICENSE.txt
+[license-url]: https://github.com/DREXYOP/GanaNaad-backend/blob/master/LICENSE
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
