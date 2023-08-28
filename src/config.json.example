@@ -1,0 +1,6 @@
+{
+    "$schema": "http://json.schemastore.org/babelrc",
+    "db_mode" : "test",
+    "mongouri":"mongodb+srv://debadithya:debadithya@cluster0.pme4jf7.mongodb.net/?retryWrites=true&w=majority",
+    "api_key":"njkjnbgyuijnbgt67uhbvcftgt67ur7r8hgyf8iew9owj"
+}
