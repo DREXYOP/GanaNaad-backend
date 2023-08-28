@@ -15,9 +15,6 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
 
   <h3 align="center">GanaNaad Backend</h3>
 
@@ -34,7 +31,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-# this is the backend code for the website of gananaad , it connects the database to the main website as well as admin dashboard.
+### this is the backend code for the website of gananaad , it connects the database to the main website as well as admin dashboard.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -86,7 +83,16 @@ Don't forget to give the project a star! Thanks again!
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
+[contributors-shield]: https://img.shields.io/github/contributors/DREXYOP/GanaNaad-backend.svg?style=for-the-badge
+[contributors-url]: https://github.com/DREXYOP/GanaNaad-backend/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/DREXYOP/GanaNaad-backend.svg?style=for-the-badge
+[forks-url]: https://github.com/DREXYOP/GanaNaad-backend/network/members
+[stars-shield]: https://img.shields.io/github/stars/DREXYOP/GanaNaad-backend.svg?style=for-the-badge
+[stars-url]: https://github.com/DREXYOP/GanaNaad-backend/stargazers
+[issues-shield]: https://img.shields.io/github/issues/DREXYOP/GanaNaad-backend.svg?style=for-the-badge
+[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[license-shield]: https://img.shields.io/github/license/DREXYOP/GanaNaad-backend.svg?style=for-the-badge
+[license-url]: https://github.com/DREXYOP/GanaNaad-backend/blob/master/LICENSE.txt
 <!-- LICENSE -->
 ## License
 
