@@ -94,7 +94,7 @@ Don't forget to give the project a star! Thanks again!
 [issues-shield]: https://img.shields.io/github/issues/DREXYOP/GanaNaad-backend.svg?style=for-the-badge
 [issues-url]: https://github.com/DREXYOP/GanaNaad-backend/issues
 [license-shield]: https://img.shields.io/github/license/DREXYOP/GanaNaad-backend.svg?style=for-the-badge
-[license-url]: https://github.com/DREXYOP/GanaNaad-backend/blob/master/LICENSE
+[license-url]: https://github.com/DREXYOP/GanaNaad-backend/blob/main/LICENSE
 <!-- LICENSE -->
 ## License
 
