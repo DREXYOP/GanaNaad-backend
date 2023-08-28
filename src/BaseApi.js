@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 4090;
+const config = require("./config.json");
 const auth = require("./middleware/authMiddleWare.js");
 const ratelimit = require("./middleware/ratelimitMiddleWare.js");
 const mongoose = require("mongoose");
@@ -8,8 +8,8 @@ const News = require("./database/schemas/news");
 
 require("./database/connect.js");
 
-app.listen(port,
-  () => console.log(`api listening at http://localhost:${port}/`),
+app.listen(config.port,
+  () => console.log(`api listening at http://localhost:${config.port}/`),
 
 );
 
