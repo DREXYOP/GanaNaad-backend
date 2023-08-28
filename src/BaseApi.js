@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const port = 4090;
 const auth = require("./authMiddleWare.js");
+const ratelimit = require("./ratelimitMiddleWare.js");
 const mongoose = require("mongoose");
 const News = require("./database/schemas/news");
 
@@ -12,8 +13,10 @@ app.listen(port,
 
 );
 
-app.use(auth);
 app.use(express.json());
+app.use(auth);
+app.set("trust proxy", 1);
+app.use(ratelimit);
 
 app.get("/", async (req, res) => {
   res.status(200).json({ status: "Working" });
@@ -29,7 +32,6 @@ app.get("/v1/news/get", async (req, res) => {
   res.status(200).json({ data });
   console.log("Recived a GET request");
 });
-
 
 
 app.post("/v1/news/post", async (req, res) => {
@@ -53,6 +55,7 @@ app.post("/v1/news/post", async (req, res) => {
     });
 });
 
+
 app.delete("/v1/news/delete/:id", async (req, res) => {
   console.log("Recived a Delete request");
   await News.deleteOne({ _id: req.params.id })
@@ -67,6 +70,7 @@ app.delete("/v1/news/delete/:id", async (req, res) => {
 
 });
 
+
 app.get("/v1/news/get/latest", async (req, res) => {
   await News.findOne({})
     .sort({ updatedAt: -1 })
@@ -79,9 +83,8 @@ app.get("/v1/news/get/latest", async (req, res) => {
     });
 
   console.log("Recived a GET request");
-
-
 });
+
 
 app.get("/v1/news/get/today", async (req, res) => {
   const targetDate = new Date(); // Use the current date as the target date
@@ -107,6 +110,7 @@ app.get("/v1/news/get/today", async (req, res) => {
 
   console.log("Recived a GET request");
 });
+
 
 app.get("/v1/news/get/thisWeek", async (req, res) => {
   const currentDate = new Date();
@@ -134,6 +138,7 @@ app.get("/v1/news/get/thisWeek", async (req, res) => {
     });
   console.log("Recived a GET request");
 });
+
 
 app.get("/v1/news/get/:id", async (req, res) => {
   await News.findOne({ _id: req.params.id })
