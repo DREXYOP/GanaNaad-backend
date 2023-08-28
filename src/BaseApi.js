@@ -141,7 +141,7 @@ app.get("/v1/news/get/thisWeek", async (req, res) => {
 
 
 app.get("/v1/news/get/:id", async (req, res) => {
-  await News.findOne({ _id: req.params.id })
+  await News.findOne({ _id: escape(req.params.id) })
     .then(r => {
       res.status(200).send(r);
     })
