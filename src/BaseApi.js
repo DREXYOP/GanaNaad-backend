@@ -58,11 +58,11 @@ app.post("/v1/news/post", async (req, res) => {
 
 app.delete("/v1/news/delete/:id", async (req, res) => {
   console.log("Recived a Delete request");
-  await News.deleteOne({ _id: req.params.id })
+  await News.deleteOne({ _id: escape(req.params.id) })
     .then(r => {
-      console.log(`Successfully deleted ${req.params.id}`);
+      console.log(`Successfully deleted ${escape(req.params.id)}`);
       console.log(r);
-      res.status(200).send(`success fully deleted ${req.params.id}`);
+      res.status(200).send(`success fully deleted ${escape(req.params.id)}`);
     })
     .catch(err => {
       res.status(500).send(`${err}`);
