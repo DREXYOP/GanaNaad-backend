@@ -15,8 +15,8 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-<a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="https://scontent.fgau1-5.fna.fbcdn.net/v/t39.30808-6/288220937_339811761623101_4854735206301795894_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=3phOJHyw6OkAX-9Ci4Q&_nc_ht=scontent.fgau1-5.fna&oh=00_AfCY5RMnQfxc9a7vFdEtuMETCdCUMNDZKYNGDdf2AQQVcQ&oe=64F096F8" alt="Logo" width="80" height="80">
+<a href="https://github.com/DREXYOP/gananaad-backend">
+    <img src="gananaad_logo.jpg" alt="Logo" width="80" height="80">
   </a>
   <h3 align="center">GanaNaad Backend</h3>
 
