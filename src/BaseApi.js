@@ -71,6 +71,13 @@ app.delete("/v1/news/delete/:id", async (req, res) => {
 });
 
 
+app.get("/v1/news/get/international", async (req, res) => {
+  await News.find({
+    location : "international"
+  })
+    
+});
+
 app.get("/v1/news/get/latest", async (req, res) => {
   await News.findOne({})
     .sort({ updatedAt: -1 })
