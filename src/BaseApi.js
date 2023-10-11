@@ -5,18 +5,28 @@ const auth = require("./middleware/authMiddleWare.js");
 const ratelimit = require("./middleware/ratelimitMiddleWare.js");
 const mongoose = require("mongoose");
 const News = require("./database/schemas/news");
+const cors = require("cors")
 
 require("./database/connect.js");
+
 
 app.listen(config.port,
   () => console.log(`api listening at http://localhost:${config.port}/`),
 
 );
+app.use(cors())
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', '*');
+
+  next();
+});
 
 app.set("trust proxy", 1);
 app.use(ratelimit);
 app.use(express.json());
 app.use(auth);
+
 
 app.get("/", async (req, res) => {
   res.status(200).json({ status: "Working" });
@@ -29,7 +39,7 @@ app.get("/v1", async (req, res) => {
 
 app.get("/v1/news/get", async (req, res) => {
   const data = await News.find({});
-  res.status(200).json({ data });
+  res.status(200).json(data);
   console.log("Recived a GET request");
 });
 
@@ -72,10 +82,11 @@ app.delete("/v1/news/delete/:id", async (req, res) => {
 
 
 app.get("/v1/news/get/international", async (req, res) => {
-  await News.find({
+  const data = await News.find({
     location : "international"
   })
-    
+  res.status(200).json(data);
+  console.log("Recived a GET request");
 });
 
 app.get("/v1/news/get/latest", async (req, res) => {

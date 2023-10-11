@@ -1,6 +1,6 @@
 {
-  "name": "newsconnector",
-  "version": "1.0.0",
+  "name": "GanaNaad-Backend",
+  "version": "1.0.0-dev",
   "main": "src/BaseApi.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -8,9 +8,10 @@
   },
   "keywords": [],
   "author": "Debadithya",
-  "license": "ISC",
+  "license": "MIT",
   "description": "a connector",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "express-rate-limit": "^6.9.0",
     "jsonwebtoken": "^9.0.1",
