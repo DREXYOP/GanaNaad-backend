@@ -12,7 +12,7 @@
   "description": "a connector",
   "dependencies": {
     "express": "^4.18.2",
-    "express-rate-limit": "^6.10.0",
+    "express-rate-limit": "^6.11.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^6.9.0",
     "ms": "^2.1.3",
