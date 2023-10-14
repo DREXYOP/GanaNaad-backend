@@ -14,13 +14,19 @@ app.listen(config.port,
   () => console.log(`api listening at http://localhost:${config.port}/`),
 
 );
+const options = {
+  origin: '*',
+  }
+// app.use(cors(options))
 app.use(cors())
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', '*');
 
+app.use(function (req, res, next) {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
   next();
-});
+  });
 
 app.set("trust proxy", 1);
 app.use(ratelimit);
@@ -38,6 +44,7 @@ app.get("/v1", async (req, res) => {
 
 
 app.get("/v1/news/get", async (req, res) => {
+  // res.set('Access-Control-Allow-Origin', '*');
   const data = await News.find({});
   res.status(200).json(data);
   console.log("Recived a GET request");
@@ -88,6 +95,24 @@ app.get("/v1/news/get/international", async (req, res) => {
   res.status(200).json(data);
   console.log("Recived a GET request");
 });
+
+app.get("/v1/news/get/tripura", async (req, res) => {
+  const data = await News.find({
+    location : "tripura"
+  })
+  res.status(200).json(data);
+  console.log("Recived a GET request");
+});
+
+app.get("/v1/news/get/india", async (req, res) => {
+  const data = await News.find({
+    location : "india"
+  })
+  res.status(200).json(data);
+  console.log("Recived a GET request");
+});
+
+
 
 app.get("/v1/news/get/latest", async (req, res) => {
   await News.findOne({})
