@@ -6,17 +6,30 @@ const ratelimit = require("./middleware/ratelimitMiddleWare.js");
 const mongoose = require("mongoose");
 const News = require("./database/schemas/news");
 const cors = require("cors")
+const multer = require("multer")
+const path = require("path")
 
 require("./database/connect.js");
 
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, '../data/uploades')
+  },
+  filename: function (req, file, cb) {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    cb(null, file.filename + '-' + uniqueSuffix)
+  }
+})
+
+const upload = multer({ storage: storage })
 
 app.listen(config.port,
   () => console.log(`api listening at http://localhost:${config.port}/`),
 
 );
-const options = {
-  origin: '*',
-  }
+
+app.use('/public',express.static(path.join(__dirname,'public')));
+
 // app.use(cors(options))
 app.use(cors())
 
@@ -31,8 +44,12 @@ app.use(function (req, res, next) {
 app.set("trust proxy", 1);
 app.use(ratelimit);
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(auth);
 
+
+
+/** Routes */
 
 app.get("/", async (req, res) => {
   res.status(200).json({ status: "Working" });
@@ -189,7 +206,7 @@ app.get("/v1/news/get/:id", async (req, res) => {
       res.status(200).send(r);
     })
     .catch(err => {
-      console.log("something went wrong");
-      res.status(500).json({ "err": err });
+      console.log(err);
+      res.status(500).json(err);
     });
 });
