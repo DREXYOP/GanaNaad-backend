@@ -5,39 +5,40 @@ const auth = require("./middleware/authMiddleWare.js");
 const ratelimit = require("./middleware/ratelimitMiddleWare.js");
 const mongoose = require("mongoose");
 const News = require("./database/schemas/news");
-const cors = require("cors")
-const multer = require("multer")
-const path = require("path")
+const cors = require("cors");
+const multer = require("multer");
+const path = require("path");
 
 require("./database/connect.js");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    return cb(null,'./public/uploades/images')
+    return cb(null,"./public/uploades/images");
   },
   filename: function (req, file, cb) {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    console.log(file)
-    cb(null, uniqueSuffix + '-' + file.originalname)
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9);
+    console.log(file);
+    cb(null, uniqueSuffix + "-" + file.originalname);
   }
-})
+});
 
-const upload = multer({ storage: storage })
+const upload = multer({ storage: storage });
 
 app.listen(config.port,
   () => console.log(`api listening at http://localhost:${config.port}/`),
 
 );
 
-app.use('/public',express.static(path.join(__dirname,'../public')));
+// eslint-disable-next-line no-undef
+app.use("/public",express.static(path.join(__dirname,"../public")));
 
-app.use(cors())
+app.use(cors());
 
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-  res.setHeader('Access-Control-Allow-Credentials', true);
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
+  res.setHeader("Access-Control-Allow-Headers", "X-Requested-With,content-type");
+  res.setHeader("Access-Control-Allow-Credentials", true);
   next();
   });
 
@@ -68,7 +69,7 @@ app.get("/v1/news/get", async (req, res) => {
 });
 
 
-app.post("/v1/news/post", upload.single('file'), async (req, res) => {
+app.post("/v1/news/post", upload.single("file"), async (req, res) => {
   console.log("Recived a POST request");
 
   const news = new News({
@@ -110,7 +111,7 @@ app.delete("/v1/news/delete/:id", async (req, res) => {
 app.get("/v1/news/get/international", async (req, res) => {
   const data = await News.find({
     location : "international"
-  })
+  });
   res.status(200).json(data);
   console.log("Recived a GET request");
 });
@@ -118,7 +119,7 @@ app.get("/v1/news/get/international", async (req, res) => {
 app.get("/v1/news/get/tripura", async (req, res) => {
   const data = await News.find({
     location : "tripura"
-  })
+  });
   res.status(200).json(data);
   console.log("Recived a GET request");
 });
@@ -126,7 +127,7 @@ app.get("/v1/news/get/tripura", async (req, res) => {
 app.get("/v1/news/get/india", async (req, res) => {
   const data = await News.find({
     location : "india"
-  })
+  });
   res.status(200).json(data);
   console.log("Recived a GET request");
 });
