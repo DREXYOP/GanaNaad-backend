@@ -13,11 +13,12 @@ require("./database/connect.js");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '../data/uploades')
+    return cb(null,'./public/uploades/images')
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-    cb(null, file.filename + '-' + uniqueSuffix)
+    console.log(file)
+    cb(null, uniqueSuffix + '-' + file.originalname)
   }
 })
 
@@ -28,9 +29,8 @@ app.listen(config.port,
 
 );
 
-app.use('/public',express.static(path.join(__dirname,'public')));
+app.use('/public',express.static(path.join(__dirname,'../public')));
 
-// app.use(cors(options))
 app.use(cors())
 
 app.use(function (req, res, next) {
@@ -68,16 +68,18 @@ app.get("/v1/news/get", async (req, res) => {
 });
 
 
-app.post("/v1/news/post", async (req, res) => {
+app.post("/v1/news/post", upload.single('file'), async (req, res) => {
   console.log("Recived a POST request");
+
   const news = new News({
     _id: new mongoose.Types.ObjectId,
     title: req.body.title ? req.body.title : "undifined",
     description: req.body.description ? req.body.description : "undifined",
+    longDescription: req.body.longDescription ? req.body.longDescription : "undifined",
     author: req.body.author ? req.body.author : "undifined",
     location: req.body.location ? req.body.location : "undifined",
     uploadDate: new Date,
-    imageUrl: req.body.imageUrl ? req.body.imageUrl : "https://assets.babycenter.com/ims/2020/11/img_noimageavailable.svg"
+    imageUrl: req.file.path ? req.file.path : "https://assets.babycenter.com/ims/2020/11/img_noimageavailable.svg"
   });
   await news.save()
     .then(r => {
