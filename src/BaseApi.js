@@ -3,6 +3,7 @@ const app = express();
 const config = require("./config.json");
 const auth = require("./middleware/authMiddleWare.js");
 const ratelimit = require("./middleware/ratelimitMiddleWare.js");
+
 const mongoose = require("mongoose");
 const News = require("./database/schemas/news");
 const cors = require("cors");
@@ -71,6 +72,7 @@ app.get("/v1/news/get", async (req, res) => {
 
 app.post("/v1/news/post", upload.single("file"), async (req, res) => {
   console.log("Recived a POST request");
+  console.log(req.file);
 
   const news = new News({
     _id: new mongoose.Types.ObjectId,
