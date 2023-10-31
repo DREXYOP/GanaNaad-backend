@@ -1,27 +1,35 @@
 {
-  "name": "GanaNaad-Backend",
-  "version": "1.0.0-dev",
-  "main": "src/BaseApi.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ."
-  },
-  "keywords": [],
-  "author": "Debadithya",
-  "license": "MIT",
-  "description": "a connector",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.18.2",
-    "express-rate-limit": "^6.11.2",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^6.9.0",
-    "ms": "^2.1.3",
-    "multer": "^1.4.5-lts.1",
-    "path": "^0.12.7",
-    "pretty-ms": "^8.0.0"
-  },
-  "devDependencies": {
-    "eslint": "^8.48.0"
-  }
+    "name": "GanaNaad-Backend",
+    "version": "1.0.0-dev",
+    "main": "build/BaseApi.js",
+    "scripts": {
+        "test": "node test.js",
+        "start": "node .",
+        "lint": "eslint .",
+        "format": "npx prettier . --write",
+        "debug": "node src/BaseApi.js --debug",
+        "dev" : "node src/BaseApi.js",
+        "build": "javascript-obfuscator ./src --output ./build"
+    },
+    "keywords": [],
+    "author": "Debadithya",
+    "license": "MIT",
+    "description": "a connector",
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.18.2",
+        "express-rate-limit": "^6.11.2",
+        "javascript-obfuscator": "^4.1.0",
+        "jsonwebtoken": "^9.0.2",
+        "mongoose": "^6.9.0",
+        "ms": "^2.1.3",
+        "multer": "^1.4.5-lts.1",
+        "path": "^0.12.7",
+        "pretty-ms": "^8.0.0"
+    },
+    "devDependencies": {
+        "eslint": "^8.48.0",
+        "eslint-config-prettier": "^9.0.0",
+        "prettier": "^3.0.3"
+    }
 }

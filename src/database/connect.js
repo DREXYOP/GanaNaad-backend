@@ -3,7 +3,6 @@ const config = require("../config");
 
 connect();
 async function connect() {
-
     mongoose.connect(config.mongouri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -12,7 +11,6 @@ async function connect() {
     const db = mongoose.connection;
     db.once("open", async () => {
         console.log("[DATABASE] Successfuly Connected To DataBase");
-
     });
     db.on("error", async (error) => {
         console.error("[DATABASE] Error connecting to the database:", error);

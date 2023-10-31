@@ -1,16 +1,10 @@
-
 <a name="readme-top"></a>
-
-
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-
-
-
 
 <!-- PROJECT LOGO -->
 <br />
@@ -26,33 +20,26 @@
   </p>
 </div>
 
-
-
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 ### this is the backend code for the website of gananaad , it connects the database to the main website as well as admin dashboard.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 ### Built With
 
-* NodeJs
-* express
-* mongodb
-* mongoose
-* jwt
-
+- NodeJs
+- express
+- mongodb
+- mongoose
+- jwt
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- ROADMAP -->
+
 ## Roadmap
 
 - [x] Base Api
@@ -60,15 +47,13 @@
 - [x] Authentication
 - [x] data structuring
 - [x] complete
-    
 
 See the [open issues](https://github.com/DREXYOP/GanaNaad-backend/issues) for a full list of proposed features (and known issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -84,7 +69,6 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 [contributors-shield]: https://img.shields.io/github/contributors/DREXYOP/GanaNaad-backend.svg?style=for-the-badge
 [contributors-url]: https://github.com/DREXYOP/GanaNaad-backend/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/DREXYOP/GanaNaad-backend.svg?style=for-the-badge
@@ -95,7 +79,9 @@ Don't forget to give the project a star! Thanks again!
 [issues-url]: https://github.com/DREXYOP/GanaNaad-backend/issues
 [license-shield]: https://img.shields.io/github/license/DREXYOP/GanaNaad-backend.svg?style=for-the-badge
 [license-url]: https://github.com/DREXYOP/GanaNaad-backend/blob/main/LICENSE
+
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
